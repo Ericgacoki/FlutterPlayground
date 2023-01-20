@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutterplayground/constants/constants.dart';
+import 'package:flutterplayground/page2.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,26 +9,16 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.green,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      debugShowCheckedModeBanner: false
-    );
+        title: 'Flutter Playground',
+        theme: ThemeData(
+          primarySwatch: Colors.green,
+        ),
+        home: const MyHomePage(title: 'Home'), // route '/'
+        routes: Constants.routes,
+        debugShowCheckedModeBanner: false);
   }
 }
 
@@ -62,14 +54,16 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _goToNextPage(){
+    Navigator.of(context).pushNamed(Constants.page2Route);
+    // Navigator.of(context).popAndPushNamed(Constants.page2Route); // remove route from back stack
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+
     return Scaffold(
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
@@ -84,25 +78,38 @@ class _MyHomePageState extends State<MyHomePage> {
           // arranges them vertically. By default, it sizes itself to fit its
           // children horizontally, and tries to be as tall as its parent.
           //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
           // Column has various properties to control how it sizes itself and
           // how it positions its children. Here we use mainAxisAlignment to
           // center the children vertically; the main axis here is the vertical
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'You have pushed the button this many times:',
+              'You have pushed the FAB this many times:',
+              style: TextStyle(
+                  color: Colors.blue,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16),
             ),
-            Text(
+           Text(
               '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+              // style: Theme.of(context).textTheme.headline4,
+              style: const TextStyle(
+                  color: Colors.blue,
+                  fontWeight: FontWeight.normal,
+                  fontSize: 48),
             ),
+            ElevatedButton(
+              onPressed: _goToNextPage,
+              style: const ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(Colors.blue)),
+              child: const Text(
+                "Next Page",
+                style: TextStyle(color: Colors.white),
+              ),
+            )
           ],
         ),
       ),
@@ -110,7 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }
