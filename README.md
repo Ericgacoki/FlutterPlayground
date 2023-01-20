@@ -1,4 +1,4 @@
-# flutterplayground
+# Flutter Playground
 
 A Flutter playground project
 
