@@ -1,9 +1,14 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutterplayground/flutter_widgets.dart';
 
-import '../page2.dart';
+import '../bottom_nav_page.dart';
 
 class Constants {
-  static final routes = {'/page2': (context) => const Page2(title: "Page 2")};
+  static final routes = <String, StatefulWidget Function(dynamic)>{
+    '/bottomNav': (context) => const BottomNavPage(),
+    '/flutterWidgets': (context) => const FlutterWidgets()
+  };
 
-  static const page2Route = '/page2';
+  static const bottomNavPageRoute = '/bottomNav';
+  static const flutterWidgetsRoute = '/flutterWidgets';
 }
