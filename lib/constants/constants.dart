@@ -4,7 +4,7 @@ import 'package:flutterplayground/flutter_widgets.dart';
 import '../bottom_nav_page.dart';
 
 class Constants {
-  static final routes = <String, StatefulWidget Function(dynamic)>{
+  static final routes = <String, Widget Function(dynamic)>{
     '/bottomNav': (context) => const BottomNavPage(),
     '/flutterWidgets': (context) => const FlutterWidgets()
   };
