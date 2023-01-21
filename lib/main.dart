@@ -1,29 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutterplayground/constants/constants.dart';
-import 'package:flutterplayground/page2.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const FlutterPlaygroundApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class FlutterPlaygroundApp extends StatelessWidget {
+  const FlutterPlaygroundApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Flutter Playground',
         theme: ThemeData(
-          primarySwatch: Colors.green,
+          primarySwatch: Colors.blue,
         ),
-        home: const MyHomePage(title: 'Home'), // route '/'
+        home: const WelcomePage(title: 'Welcome to Flutter'), // route '/'
         routes: Constants.routes,
         debugShowCheckedModeBanner: false);
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class WelcomePage extends StatefulWidget {
+  const WelcomePage({super.key, required this.title});
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -37,10 +36,10 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<WelcomePage> createState() => _WelcomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _WelcomePageState extends State<WelcomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
@@ -54,8 +53,8 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  void _goToNextPage(){
-    Navigator.of(context).pushNamed(Constants.page2Route);
+  void _goToNextPage() {
+    Navigator.of(context).pushNamed(Constants.bottomNavPageRoute);
     // Navigator.of(context).popAndPushNamed(Constants.page2Route); // remove route from back stack
   }
 
@@ -93,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   fontWeight: FontWeight.bold,
                   fontSize: 16),
             ),
-           Text(
+            Text(
               '$_counter',
               // style: Theme.of(context).textTheme.headline4,
               style: const TextStyle(
